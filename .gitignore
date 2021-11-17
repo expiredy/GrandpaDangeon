@@ -28,7 +28,9 @@
 
 # Rider cache directory
 Assets/Scripts/.idea
-/.idea
+/**/.idea
+/**/.DS_Store
+
 
 # Gradle cache directory
 .gradle/
@@ -55,6 +57,8 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+*.meta
+/**/*.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
