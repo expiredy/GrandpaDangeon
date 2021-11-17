@@ -1,18 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Set in Inspector")] 
+    public GameObject gun;
+    public float bulletForce = 500f;
+
+    private Rigidbody2D playerRB;
+
+    private void Awake()
     {
-        
+        playerRB = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 0f;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition -= transform.position;
+
+        // gun rotation follows mouse
+        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+        gun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        // shooting
+        if (Input.GetMouseButtonUp(0))
+        {
+            Vector2 direction = mousePosition - transform.position;
+            direction = direction.normalized;
+            playerRB.AddForce(-direction * bulletForce);
+        }
     }
 }

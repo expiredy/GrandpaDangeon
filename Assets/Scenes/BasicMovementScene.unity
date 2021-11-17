@@ -455,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a786870c4710ff42ba5d44b9035a2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 1037525731}
+  bulletForce: 500
 --- !u!61 &516959393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -624,7 +626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037525731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1985270081}
