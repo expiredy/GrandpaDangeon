@@ -9,12 +9,12 @@ public class MainPlayerMovement : MonoBehaviour
 	private float angleForAiming;
 	
 	//Components links
-	private Rigidbody2D playerRigidbodyComponent;
+	private Rigidbody2D _playerRigidbody2DComponent;
 	
 	// Start is called before the first frame update
-    void Avake()
+    void Awake()
     {
-    	this.playerRigidbodyComponent = this.GetComponent<Rigidbody2D>();    
+    	this._playerRigidbody2DComponent = this.GetComponent<Rigidbody2D>();    
     }
 
     // Update is called once per frame
@@ -40,7 +40,10 @@ public class MainPlayerMovement : MonoBehaviour
 	
 	}
 	
-	public void moveByExplode(){
-
-	}
+	public void moveByExplode(Vector3 positionOfForceApplication, float explosionForce, float explosionRadius){
+        Vector2 directoryOfExplode = (this.transform.position - positionOfForceApplication);
+        float wearoff = 1 - (directoryOfExplode.magnitude / explosionRadius);
+        this._playerRigidbody2DComponent.AddForce(directoryOfExplode.normalized * explosionForce * wearoff, ForceMode2D.Impulse);
+		print(directoryOfExplode.normalized * explosionForce * wearoff);
+    }
 }

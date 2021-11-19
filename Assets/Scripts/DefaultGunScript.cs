@@ -8,6 +8,8 @@ public class DefaultGunScript : MonoBehaviour
     private bool isShootingIsAvaliable;
     
     private MainPlayerMovement _playerMovementController;
+
+    public float explodeForce, explodeRadius;
     
     void Start()
     {
@@ -43,6 +45,7 @@ public class DefaultGunScript : MonoBehaviour
         {
             RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
                 FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
+            this._playerMovementController.moveByExplode(hitDetector.point, explodeForce, explodeRadius);
         }
     }
 }
