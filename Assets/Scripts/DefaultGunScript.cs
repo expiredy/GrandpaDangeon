@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DefaultGunScript : MonoBehaviour
 {
     public GameObject playerParentObject;
-    private MainPlayerMovement _playerMovementController;
-
+    public Transform FiringShootPlaceTransform;
+    
     private bool isShootingIsAvaliable;
+    
+    private MainPlayerMovement _playerMovementController;
     
     void Start()
     {
@@ -32,14 +32,17 @@ public class DefaultGunScript : MonoBehaviour
             this._playerMovementController.GetAngleForAiming()));
     }
 
-    private ShotInputChecker()
+    private void ShotInputChecker()
     {
-        this.isShootingIsAvaliable = Input.GetButtonDown("Fire1");
+        this.isShootingIsAvaliable = Input.GetMouseButtonDown(0);
     }
 
-    private MakeShot()
+    private void MakeShot()
     {
-        
+        if (this.isShootingIsAvaliable)
+        {
+            RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
+                FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
+        }
     }
-
 }
