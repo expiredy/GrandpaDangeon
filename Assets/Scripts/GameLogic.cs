@@ -24,6 +24,6 @@ public class GameLogic : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene("BasicLevel");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
