@@ -8,6 +8,7 @@ public class MainPlayerMovement : MonoBehaviour
     private Vector2 mouseAimingVector;
 	private float angleForAiming;
 	
+
 	//Components links
 	private Rigidbody2D _playerRigidbody2DComponent;
 	

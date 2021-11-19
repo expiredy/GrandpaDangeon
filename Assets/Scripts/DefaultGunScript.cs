@@ -21,11 +21,12 @@ public class DefaultGunScript : MonoBehaviour
     {
         this.RotateForAiming();
         this.ShotInputChecker();
+        this.MakeShot();
     }
 
     void FixedUpdate()
     {
-        this.MakeShot();
+
     }
 
     private void RotateForAiming()
