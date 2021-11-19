@@ -30,9 +30,8 @@ public class PlayerMovement : MonoBehaviour
         // shooting
         if (Input.GetMouseButtonUp(0))
         {
-            Vector2 direction = mousePosition - transform.position;
-            direction = direction.normalized;
-            playerRB.AddForce(-direction * bulletForce);
+            mousePosition = mousePosition.normalized;
+            playerRB.AddForce(-mousePosition * bulletForce);
         }
     }
 }
