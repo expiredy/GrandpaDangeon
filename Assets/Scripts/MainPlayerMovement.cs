@@ -26,6 +26,11 @@ public class MainPlayerMovement : MonoBehaviour
     {
  		this.MouseInputDetection();       
     }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+	    print(collision.gameObject);
+    }
 	
 	private void MouseInputDetection(){
 		this.mouseAimingVector = mainUsingCamera.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
@@ -36,7 +41,7 @@ public class MainPlayerMovement : MonoBehaviour
 		return Vector2.SignedAngle(Vector2.right, this.mouseAimingVector);
 	}
 		
-	public void moveByRecoil(Vector3 targetPositionOfBullet){
+	public void moveByRecoil(Vector3 targetPositionOfBullet, float bulletSpeed){
 		
 	}
 	

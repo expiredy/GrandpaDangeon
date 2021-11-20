@@ -1019,10 +1019,10 @@ MonoBehaviour:
   FiringShootPlaceTransform: {fileID: 382652269}
   explodeForce: 20
   explodeRadius: 15
-  bulletSpeed: 20
-  reloadTime: 5
-  randomizeShooting: 0
-  bulletPrefab: {fileID: 1646595063914740544, guid: 6a7a3f26d90b0ae439feb8a5a0894dc6, type: 3}
+  bulletSpeed: 1
+  reloadTime: 1
+  maxRandomizeShootingRange: 0
+  bulletPrefabObject: {fileID: 1646595063914740544, guid: 6a7a3f26d90b0ae439feb8a5a0894dc6, type: 3}
 --- !u!1 &1260772534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,7 +2343,7 @@ MonoBehaviour:
   FiringShootPlaceTransform: {fileID: 1483445438}
   explodeForce: 1
   explodeRadius: 1
-  bulletSpeed: 0
+  bulletSpeed: 1
   reloadTime: 0.1
-  randomizeShooting: 0
-  bulletPrefab: {fileID: 1646595063914740544, guid: 6a7a3f26d90b0ae439feb8a5a0894dc6, type: 3}
+  maxRandomizeShootingRange: 0
+  bulletPrefabObject: {fileID: 1646595063914740544, guid: 6a7a3f26d90b0ae439feb8a5a0894dc6, type: 3}

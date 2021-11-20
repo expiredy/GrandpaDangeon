@@ -14,7 +14,7 @@ public class DefaultGunScript : MonoBehaviour
     [SerializeField] public float bulletSpeed;
     [SerializeField] public float reloadTime;
     
-    [Range(-0.5f, 0.5f)] public float randomizeShooting = 0f; 
+    [Range(0f, 0.5f)] public float maxRandomizeShootingRange = 0f; 
     
     [SerializeField] public GameObject bulletPrefabObject;
     
@@ -50,8 +50,6 @@ public class DefaultGunScript : MonoBehaviour
             isGunReloaded = false;
             RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
                                        FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
-            this._playerMovementController.moveByExplode(hitDetector.point, explodeForce, explodeRadius);
-            this._playerMovementController.moveByRecoil(hitDetector.point);
             this.createVisualShot(hitDetector.point);
             StartCoroutine(ShotsRecoile());
         }
@@ -59,9 +57,12 @@ public class DefaultGunScript : MonoBehaviour
 
     private void createVisualShot(Vector3 endShotPoint)
     {
-        GameObject currnetBullet = Instatiate(bulletPrefabObject);
-        currentBullet.
-        
+        GameObject currentBullet = Instantiate(bulletPrefabObject);
+        currentBullet.transform.position = new Vector3(this.FiringShootPlaceTransform.position.x,
+														this.FiringShootPlaceTransform.position.y, 0);
+        currentBullet.GetComponent<BulletBehavior>().StartMoving(endShotPoint, this.bulletSpeed, this._playerMovementController,
+																 this.explodeForce, this.explodeRadius);
+
     }
 
     IEnumerator ShotsRecoile()
