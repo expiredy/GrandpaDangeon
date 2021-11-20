@@ -163,17 +163,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 262002044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da89105c8b49d1b4f8c9c62f436eacd4, type: 3}
+  m_Script: {fileID: 11500000, guid: bbde522f249ebf44f9b7ddb42268ed10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefabs:
-  - {fileID: 4036108170534593902, guid: 23d15fb31977cdc4aa7288261ea01f0f, type: 3}
-  - {fileID: 6305195446473631413, guid: 615014bc4b9cd9b41b5a618a1003f290, type: 3}
-  - {fileID: 2087525587108030693, guid: 5699d4decd7d4fb4cbb192acdbb45f0c, type: 3}
-  - {fileID: 7225349530476651963, guid: ad82877bc4d159f45819052767c3299a, type: 3}
-  - {fileID: 641923642029630315, guid: f2fc640d8725db248b7947297c86202f, type: 3}
-  minDistance: 2.5
-  maxPlatformCount: 10
+  - {fileID: 4036108170534593902, guid: 979f26b3fabe40746a31b735633ad500, type: 3}
+  - {fileID: 6305195446473631413, guid: 9dd04397435e18741847d1275f323567, type: 3}
+  - {fileID: 2087525587108030693, guid: 06dda8faf49bb9e4d992909e735d6bf4, type: 3}
+  - {fileID: 7225349530476651963, guid: 509cbc1b5ff5deb49927b63c644d3628, type: 3}
+  - {fileID: 641923642029630315, guid: 616e581ccc8902f46b48ad031b394709, type: 3}
+  minDistance: 2
+  maxPlatformCount: 4
   cameraWidth: 0
   cameraHeight: 0
 --- !u!1 &562974340
