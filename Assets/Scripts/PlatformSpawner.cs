@@ -8,6 +8,7 @@ public class PlatformSpawner : MonoBehaviour
 {
     public GameObject[] platformPrefabs;
     public float minDistance = 5f;
+    public float maxDistance = 8f;
     public int maxPlatformCount = 4;
     public float cameraWidth, cameraHeight;
     
@@ -58,6 +59,7 @@ public class PlatformSpawner : MonoBehaviour
     bool CanSpawn(GameObject platform)
     {
         Transform square;
+        float minDist = 100f;
         for (int i = 0; i < platform.transform.childCount; ++i)
         {
             square = platform.transform.GetChild(i);
@@ -80,6 +82,7 @@ public class PlatformSpawner : MonoBehaviour
             }
             if (closestValidHit.distance < minDistance)
                 return false;
+            minDist = Mathf.Min(minDist, closestValidHit.distance);
             closestValidHit = new RaycastHit2D();
             hits = Physics2D.RaycastAll(square.position, new Vector2(-1, 0));
             foreach(RaycastHit2D hit in hits)
@@ -104,6 +107,7 @@ public class PlatformSpawner : MonoBehaviour
             }
             if (closestValidHit.distance < minDistance)
                 return false;
+            minDist = Mathf.Min(minDist, closestValidHit.distance);
             closestValidHit = new RaycastHit2D();
             hits = Physics2D.RaycastAll(square.position, new Vector2(0, -1));
             foreach(RaycastHit2D hit in hits)
@@ -114,7 +118,7 @@ public class PlatformSpawner : MonoBehaviour
                     break;
                 }  
             }
-            if (closestValidHit.distance < minDistance)
+            if (closestValidHit.distance < minDistance || closestValidHit.distance > maxDistance)
                 return false;
             closestValidHit = new RaycastHit2D();
             hits = Physics2D.RaycastAll(square.position, new Vector2(1, 1));
@@ -128,6 +132,7 @@ public class PlatformSpawner : MonoBehaviour
             }
             if (closestValidHit.distance < minDistance)
                 return false;
+            minDist = Mathf.Min(minDist, closestValidHit.distance);
             closestValidHit = new RaycastHit2D();
             hits = Physics2D.RaycastAll(square.position, new Vector2(-1, -1));
             foreach(RaycastHit2D hit in hits)
@@ -139,6 +144,9 @@ public class PlatformSpawner : MonoBehaviour
                 }  
             }
             if (closestValidHit.distance < minDistance)
+                return false;
+            minDist = Mathf.Min(minDist, closestValidHit.distance);
+            if (minDist > maxDistance)
                 return false;
         }
 

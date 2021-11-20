@@ -263,6 +263,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e051ce45ec833d84c970e3ef000acfd8, type: 3}
+--- !u!1 &1446126400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1332598235182714794, guid: 81e69c8462b9dff45812e5bf9e80557c, type: 3}
+  m_PrefabInstance: {fileID: 1620654450}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1446126401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446126400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73246e1954354ee44b9946b96d54a3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottomRooms:
+  - {fileID: 1767678320243935925, guid: 8693fc1fe493efd4aadd22151f5a4204, type: 3}
+  - {fileID: 6508832412151658956, guid: 8725d13de14d33b45be8b7cadc331103, type: 3}
+  - {fileID: 1568787491913429090, guid: d2a0ba0832b94c7499640bce72d6bd52, type: 3}
+  - {fileID: 3250793054735712587, guid: 9b2dc6dc47293cd458eb6c8dec0389a9, type: 3}
+  - {fileID: 3908228595312380293, guid: 7380dc2885d935840a2e7736ba94a1da, type: 3}
+  topRooms:
+  - {fileID: 5382242681430100736, guid: c33554d815563d144b88f46b9d044e00, type: 3}
+  - {fileID: 1127638096828240044, guid: e5dac52cc2cb015438f22b26940b3389, type: 3}
+  - {fileID: 3908228595312380293, guid: 7380dc2885d935840a2e7736ba94a1da, type: 3}
+  leftRooms:
+  - {fileID: 6401378218790758951, guid: ad218d89ff146874e9524404c14903d8, type: 3}
+  - {fileID: 6508832412151658956, guid: 8725d13de14d33b45be8b7cadc331103, type: 3}
+  - {fileID: 6490516390607752837, guid: e3088b3905a4e97499927e1bafcdd61b, type: 3}
+  - {fileID: 1568787491913429090, guid: d2a0ba0832b94c7499640bce72d6bd52, type: 3}
+  - {fileID: 5462569013587074639, guid: ba04b680fe67dc147b0588ad2554ea31, type: 3}
+  - {fileID: 6119834012841140223, guid: 17e22b48fedba6b408348de4e9835860, type: 3}
+  rightRooms:
+  - {fileID: 6490516390607752837, guid: e3088b3905a4e97499927e1bafcdd61b, type: 3}
+  - {fileID: 1568787491913429090, guid: d2a0ba0832b94c7499640bce72d6bd52, type: 3}
+  - {fileID: 5462569013587074639, guid: ba04b680fe67dc147b0588ad2554ea31, type: 3}
+  - {fileID: 5462569013587074639, guid: ba04b680fe67dc147b0588ad2554ea31, type: 3}
+  - {fileID: 6119834012841140223, guid: 17e22b48fedba6b408348de4e9835860, type: 3}
+  - {fileID: 7191566160619890728, guid: c5447f456a7981c46a510af50ba625c8, type: 3}
+  - {fileID: 3250793054735712587, guid: 9b2dc6dc47293cd458eb6c8dec0389a9, type: 3}
+  - {fileID: 5382242681430100736, guid: c33554d815563d144b88f46b9d044e00, type: 3}
+  rooms: []
+  maxRooms: 2
 --- !u!1001 &1620654450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,5 +363,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1332598235182714795, guid: 81e69c8462b9dff45812e5bf9e80557c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 81e69c8462b9dff45812e5bf9e80557c, type: 3}
