@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DefaultGunScript : MonoBehaviour
@@ -5,11 +6,15 @@ public class DefaultGunScript : MonoBehaviour
     public GameObject playerParentObject;
     public Transform FiringShootPlaceTransform;
     
-    private bool isShootingIsAvaliable;
+    private bool isShootingIsAvaliable, isGunReloaded=true;
     
     private MainPlayerMovement _playerMovementController;
 
-    public float explodeForce, explodeRadius;
+    [SerializeField] public float explodeForce, explodeRadius;
+    [SerializeField] public float bulletSpeed;
+    [SerializeField] public float reloadTime;
+
+    [SerializeField] public GameObject bulletPrefab;
     
     void Start()
     {
@@ -24,11 +29,6 @@ public class DefaultGunScript : MonoBehaviour
         this.MakeShot();
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     private void RotateForAiming()
     {
         this.transform.rotation = Quaternion.Euler(new Vector3(0, 0,
@@ -39,14 +39,22 @@ public class DefaultGunScript : MonoBehaviour
     {
         this.isShootingIsAvaliable = Input.GetMouseButtonDown(0);
     }
-
     private void MakeShot()
+
     {
-        if (this.isShootingIsAvaliable)
+        if (this.isShootingIsAvaliable && isGunReloaded)
         {
+            isGunReloaded = false;
             RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
-                FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
+                                       FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
             this._playerMovementController.moveByExplode(hitDetector.point, explodeForce, explodeRadius);
+            StartCoroutine(ShotsRecoile());
         }
+    }
+
+    IEnumerator ShotsRecoile()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        isGunReloaded = true;
     }
 }

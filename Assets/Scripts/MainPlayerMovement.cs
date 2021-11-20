@@ -8,11 +8,14 @@ public class MainPlayerMovement : MonoBehaviour
     private Vector2 mouseAimingVector;
 	private float angleForAiming;
 	
+	//movement params
+	private const int _totalCountOfImpulses = 2;
+	private const float _impulseIterationForce = 0.5f;
+	private const float _impuleseDefaultForceMultiplayer = 1f;
 
 	//Components links
 	private Rigidbody2D _playerRigidbody2DComponent;
 	
-	// Start is called before the first frame update
     void Awake()
     {
     	this._playerRigidbody2DComponent = this.GetComponent<Rigidbody2D>();    
@@ -23,10 +26,6 @@ public class MainPlayerMovement : MonoBehaviour
     {
  		this.MouseInputDetection();       
     }
-
-	void FixedUpdate(){
-		
-	}
 	
 	private void MouseInputDetection(){
 		this.mouseAimingVector = mainUsingCamera.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
@@ -37,14 +36,20 @@ public class MainPlayerMovement : MonoBehaviour
 		return Vector2.SignedAngle(Vector2.right, this.mouseAimingVector);
 	}
 		
-	public void moveByRecoil(){
-	
+	public void moveByRecoil(Vector3 targetPositionOfBullet){
+		
 	}
 	
 	public void moveByExplode(Vector3 positionOfForceApplication, float explosionForce, float explosionRadius){
         Vector2 directoryOfExplode = (this.transform.position - positionOfForceApplication);
         float wearoff = 1 - (directoryOfExplode.magnitude / explosionRadius);
-        this._playerRigidbody2DComponent.AddForce(directoryOfExplode.normalized * explosionForce * wearoff, ForceMode2D.Impulse);
-		print(directoryOfExplode.normalized * explosionForce * wearoff);
+		for (int myltiplayerOfForces = 0; myltiplayerOfForces < _totalCountOfImpulses; myltiplayerOfForces++){
+        	this._playerRigidbody2DComponent.AddForce((directoryOfExplode.normalized * explosionForce * wearoff) *
+													  (_impuleseDefaultForceMultiplayer + _impulseIterationForce * myltiplayerOfForces), ForceMode2D.Impulse);
+		}
     }
+	 
+	private void CounterMovement(){
+		
+	}
 }
