@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6897235107454374536}
   - component: {fileID: 6422152794031191855}
+  - component: {fileID: -602720087482425479}
   - component: {fileID: 5612556028144183646}
   m_Layer: 0
   m_Name: BulletPrefab
@@ -50,6 +51,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.025
+--- !u!114 &-602720087482425479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646595063914740544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0adab84ba78814a8020de2f247bb72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &5612556028144183646
 Rigidbody2D:
   serializedVersion: 4

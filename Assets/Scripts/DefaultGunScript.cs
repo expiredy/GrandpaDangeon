@@ -13,8 +13,10 @@ public class DefaultGunScript : MonoBehaviour
     [SerializeField] public float explodeForce, explodeRadius;
     [SerializeField] public float bulletSpeed;
     [SerializeField] public float reloadTime;
-
-    [SerializeField] public GameObject bulletPrefab;
+    
+    [Range(-0.5f, 0.5f)] public float randomizeShooting = 0f; 
+    
+    [SerializeField] public GameObject bulletPrefabObject;
     
     void Start()
     {
@@ -44,12 +46,22 @@ public class DefaultGunScript : MonoBehaviour
     {
         if (this.isShootingIsAvaliable && isGunReloaded)
         {
+            
             isGunReloaded = false;
             RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
                                        FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
             this._playerMovementController.moveByExplode(hitDetector.point, explodeForce, explodeRadius);
+            this._playerMovementController.moveByRecoil(hitDetector.point);
+            this.createVisualShot(hitDetector.point);
             StartCoroutine(ShotsRecoile());
         }
+    }
+
+    private void createVisualShot(Vector3 endShotPoint)
+    {
+        GameObject currnetBullet = Instatiate(bulletPrefabObject);
+        currentBullet.
+        
     }
 
     IEnumerator ShotsRecoile()
