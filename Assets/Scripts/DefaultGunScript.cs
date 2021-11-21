@@ -50,7 +50,7 @@ public class DefaultGunScript : MonoBehaviour
             isGunReloaded = false;
             RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
                                        FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
-            Debug.DrawLine(this.FiringShootPlaceTransform.position, hitDetector.point, Color.green, 5, false);
+            Debug.DrawLine(this.FiringShootPlaceTransform.position, hitDetector.point, Color.green, 0.5f, false);
             this.createVisualShot(new Vector2(this.FiringShootPlaceTransform.position.x,
                 this.FiringShootPlaceTransform.position.y) - hitDetector.point);   
             StartCoroutine(ShotsRecoile());

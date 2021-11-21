@@ -19,6 +19,11 @@ public class BulletBehavior : MonoBehaviour
         this._bulletSpeed = 0f;
     }
 
+    void Start()
+    {
+        Invoke(nameof(DistroyThis), 10.0f);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -28,13 +33,13 @@ public class BulletBehavior : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         this.charecterControllerComponent.moveByExplode(this._directionOfShot, _explodeForce, _explodeRadius);
-        Destroy(this.gameObject);
+        this.DistroyThis();
     }
     
     
     private void MoveBullet()
     {
-	    this._bulletRigidbody2D.AddForce(-this._directionOfShot  * this._bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
+        this._bulletRigidbody2D.AddForce(-this._directionOfShot  * this._bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
     }	
     
     public void StartMoving(Vector3 shotDirection, float speedParam, MainPlayerMovement charecterController,
@@ -47,5 +52,10 @@ public class BulletBehavior : MonoBehaviour
 		this._explodeRadius = explodeRadius;
         this.MoveBullet();
         this.charecterControllerComponent.moveByRecoil(-this.transform.right, this._bulletSpeed);
+    }
+
+    private void DistroyThis()
+    {
+        Destroy(this.gameObject);
     }
 }
