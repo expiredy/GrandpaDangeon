@@ -39,7 +39,7 @@ public class DefaultGunScript : MonoBehaviour
 
     private void ShotInputChecker()
     {
-        this.isShootingIsAvaliable = Input.GetMouseButtonDown(0);
+        this.isShootingIsAvaliable = Input.GetMouseButton(0);
     }
     private void MakeShot()
 
@@ -50,17 +50,21 @@ public class DefaultGunScript : MonoBehaviour
             isGunReloaded = false;
             RaycastHit2D hitDetector = Physics2D.Raycast(this.FiringShootPlaceTransform.position,
                                        FiringShootPlaceTransform.TransformDirection(Vector2.right), 50f);
-            this.createVisualShot(hitDetector.point);
+            Debug.DrawLine(this.FiringShootPlaceTransform.position, hitDetector.point, Color.green, 5, false);
+            this.createVisualShot(new Vector2(this.FiringShootPlaceTransform.position.x,
+                this.FiringShootPlaceTransform.position.y) - hitDetector.point);   
             StartCoroutine(ShotsRecoile());
         }
     }
 
-    private void createVisualShot(Vector3 endShotPoint)
+    private void createVisualShot(Vector2 endShotPoint)
     {
         GameObject currentBullet = Instantiate(bulletPrefabObject);
         currentBullet.transform.position = new Vector3(this.FiringShootPlaceTransform.position.x,
 														this.FiringShootPlaceTransform.position.y, 0);
-        currentBullet.GetComponent<BulletBehavior>().StartMoving(endShotPoint, this.bulletSpeed, this._playerMovementController,
+        currentBullet.transform.rotation = this.transform.rotation;
+        currentBullet.GetComponent<BulletBehavior>().StartMoving(endShotPoint.normalized,
+                                                            this.bulletSpeed, this._playerMovementController,
 																 this.explodeForce, this.explodeRadius);
 
     }
