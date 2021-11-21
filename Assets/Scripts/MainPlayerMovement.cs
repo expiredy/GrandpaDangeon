@@ -4,9 +4,12 @@ public class MainPlayerMovement : MonoBehaviour
 {
 
 	[SerializeField] Camera mainUsingCamera;
+	[SerializeField] LayerMask groundLayer;
 	//Aiming and looking variables 
     private Vector2 mouseAimingVector;
 	private float angleForAiming;
+
+	private bool _isOnGround;
 	
 	//movement params
 	private const int _totalCountOfImpulses = 2;
@@ -28,9 +31,18 @@ public class MainPlayerMovement : MonoBehaviour
  		this.MouseInputDetection();       
     }
     
-    void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-	    
+	    int layerIndex = other.gameObject.layer;
+	    _isOnGround = groundLayer == (groundLayer | (1 << layerIndex));
+
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+	    int layerIndex = other.gameObject.layer;
+	    _isOnGround = groundLayer != (groundLayer | (1 << layerIndex));
     }
 	
 	private void MouseInputDetection(){
