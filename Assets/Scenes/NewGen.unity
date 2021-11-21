@@ -170,11 +170,12 @@ MonoBehaviour:
   cameraHeight: 0
   chunkPrefab: {fileID: 4749029087044925639, guid: eab3d00be7ae477408bfb967faaa98ed, type: 3}
   maxPlatformCount: 5
-  minDistance: 2
-  maxDistance: 5
-  minSize: 2
-  maxSize: 5
-  matrixSize: 18
+  minDistance: 3
+  maxDistance: 10
+  minSize: 6
+  maxSize: 10
+  matrixSizeX: 36
+  matrixSizeY: 20
 --- !u!1 &562974340
 GameObject:
   m_ObjectHideFlags: 0

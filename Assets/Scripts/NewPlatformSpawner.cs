@@ -42,12 +42,12 @@ public class NewPlatformSpawner : MonoBehaviour
         {
             int randX = Random.Range(1, matrixSizeX - 1);
             int randY = Random.Range(1, matrixSizeY - 1);
-            int size = Random.Range(minSize, maxSize);
+            int size = Random.Range(minSize, maxSize + 1);
             bool canSpawn = true;
             bool foundPlatform = false;
-            for (int x = Math.Max(0, randX - maxDistance); canSpawn && x < randX + size + maxDistance && x < matrixSizeX; ++x)
+            for (int x = Math.Max(0, randX - maxDistance); canSpawn && x < Math.Min(randX + size + maxDistance, matrixSizeX); ++x)
             {
-                if (x > randX + minDistance || x < randX - minDistance)
+                if (x > randX + size + minDistance || x < randX - minDistance)
                 {
                     if (matrix[randY, x] == 1)
                     {
@@ -60,9 +60,9 @@ public class NewPlatformSpawner : MonoBehaviour
                     break;
                 }
 
-                for (int y = Math.Max(0, randY - maxDistance); y < randY + size + maxDistance && y < matrixSizeY; ++y)
+                for (int y = Math.Max(0, randY - maxDistance); y < Math.Min(randY + maxDistance, matrixSizeY); ++y)
                 {
-                    if (x > randX + minDistance || x < randX - minDistance || y > randY + minDistance || y < randY - minDistance)
+                    if ((x > randX + size + minDistance || x < randX - minDistance) || (y > randY + minDistance || y < randY - minDistance))
                     {
                         if (matrix[y, x] == 1)
                         {
