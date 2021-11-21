@@ -48,12 +48,12 @@ public class MainPlayerMovement : MonoBehaviour
 	}
 	
 	public void moveByExplode(Vector3 positionOfForceApplication, float explosionForce, float explosionRadius){
-        Vector2 directoryOfExplode = (this.transform.position - positionOfForceApplication);
-        float wearoff = 1 - (directoryOfExplode.magnitude / explosionRadius);
-		for (int myltiplayerOfForces = 0; myltiplayerOfForces < _totalCountOfImpulses; myltiplayerOfForces++){
-        	this._playerRigidbody2DComponent.AddForce((directoryOfExplode.normalized * explosionForce * wearoff) *
-													  (_impuleseDefaultForceMultiplayer + _impulseIterationForce * myltiplayerOfForces), ForceMode2D.Impulse);
-		}
+		float wearoff = 1 - (positionOfForceApplication.magnitude / explosionRadius);
+        for (int myltiplayerOfForces = 0; myltiplayerOfForces < _totalCountOfImpulses; myltiplayerOfForces++){
+	        this._playerRigidbody2DComponent.AddForce((positionOfForceApplication.normalized * explosionForce * wearoff) *
+	                                                  (_impuleseDefaultForceMultiplayer + _impulseIterationForce * 
+													   myltiplayerOfForces), ForceMode2D.Impulse);
+        }
     }
 	 
 	private void CounterMovement(){

@@ -27,7 +27,7 @@ public class BulletBehavior : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // this.charecterControllerComponent.moveByExplode(this.transform.position, _explodeForce, _explodeRadius);
+        this.charecterControllerComponent.moveByExplode(this._directionOfShot, _explodeForce, _explodeRadius);
         Destroy(this.gameObject);
     }
     
