@@ -12,10 +12,8 @@ public class FollowingCamera : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 desiredPosition = targetForFollowing.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        this.transform.position = smoothedPosition;
-        this.transform.LookAt(targetForFollowing);
+        this.transform.position = new Vector3(targetForFollowing.position.x, targetForFollowing.position.y,
+                                              this.transform.position.z);;
     }
 
 }

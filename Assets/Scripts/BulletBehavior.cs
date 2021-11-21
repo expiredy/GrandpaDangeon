@@ -4,41 +4,48 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
-    private Vector3 _targetEndPoint;
+    private Vector3 _directionOfShot;
     private float _bulletSpeed;
 	private float _explodeForce, _explodeRadius;    
 
 
     private MainPlayerMovement charecterControllerComponent;
+    private Rigidbody2D _bulletRigidbody2D;
     
     void Awake()
     {
-        this._targetEndPoint = Vector3.zero;
+        this._bulletRigidbody2D = this.GetComponent<Rigidbody2D>();
+        this._directionOfShot = Vector3.zero;
         this._bulletSpeed = 0f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += this._targetEndPoint * this._bulletSpeed * Time.deltaTime;
+        this.MoveBullet();
     }
-
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
-		print("aa");
-		this.charecterControllerComponent.moveByExplode(this.transform.position, _explodeForce, _explodeRadius);
-        this.charecterControllerComponent.moveByRecoil(this.transform.position);
+        // this.charecterControllerComponent.moveByExplode(this.transform.position, _explodeForce, _explodeRadius);
         Destroy(this.gameObject);
     }
     
-    public void StartMoving(Vector3 endPoint, float speedParam, MainPlayerMovement charecterController,
+    
+    private void MoveBullet()
+    {
+	    this._bulletRigidbody2D.AddForce(-this._directionOfShot  * this._bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
+    }	
+    
+    public void StartMoving(Vector3 shotDirection, float speedParam, MainPlayerMovement charecterController,
 							float explodeForce, float explodeRadius)
     {
-        this._targetEndPoint = endPoint;
+        this._directionOfShot = shotDirection;
         this._bulletSpeed = speedParam;
 		this.charecterControllerComponent = charecterController;
 		this._explodeForce = explodeForce;
 		this._explodeRadius = explodeRadius;
-       
+        this.MoveBullet();
+        this.charecterControllerComponent.moveByRecoil(-this.transform.right, this._bulletSpeed);
     }
 }

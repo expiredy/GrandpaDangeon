@@ -12,6 +12,7 @@ public class MainPlayerMovement : MonoBehaviour
 	private const int _totalCountOfImpulses = 2;
 	private const float _impulseIterationForce = 0.5f;
 	private const float _impuleseDefaultForceMultiplayer = 1f;
+	private const float _recoilImpulseMultiplayer = 0.2f; 
 
 	//Components links
 	private Rigidbody2D _playerRigidbody2DComponent;
@@ -29,7 +30,7 @@ public class MainPlayerMovement : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-	    print(collision.gameObject);
+	    
     }
 	
 	private void MouseInputDetection(){
@@ -40,9 +41,10 @@ public class MainPlayerMovement : MonoBehaviour
 	public float GetAngleForAiming(){
 		return Vector2.SignedAngle(Vector2.right, this.mouseAimingVector);
 	}
-		
+	
 	public void moveByRecoil(Vector3 targetPositionOfBullet, float bulletSpeed){
-		
+		this._playerRigidbody2DComponent.AddForce((targetPositionOfBullet.normalized * bulletSpeed * _recoilImpulseMultiplayer),
+			ForceMode2D.Impulse);
 	}
 	
 	public void moveByExplode(Vector3 positionOfForceApplication, float explosionForce, float explosionRadius){
