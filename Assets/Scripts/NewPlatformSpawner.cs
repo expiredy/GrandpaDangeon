@@ -8,6 +8,7 @@ public class NewPlatformSpawner : MonoBehaviour
 {
     public float cameraWidth, cameraHeight;
     public GameObject chunkPrefab;
+    public Sprite chunkCleanSprite;
     public int maxPlatformCount = 5;
     public int minDistance = 2;
     public int maxDistance = 5;
@@ -108,9 +109,13 @@ public class NewPlatformSpawner : MonoBehaviour
                 if (matrix[i, j] == 1)
                 {
                     var localScale = chunkPrefab.transform.localScale;
-                    Instantiate(chunkPrefab,
+                    GameObject chunk = Instantiate(chunkPrefab,
                         new Vector3(-cameraWidth + j * localScale.x, cameraHeight - i * localScale.y, 0),
                         new Quaternion(0, 0, 0, 0));
+                    if (i > 0 && matrix[i - 1, j] == 1 && chunkCleanSprite != null)
+                    {
+                        chunk.transform.Find("Square").GetComponent<SpriteRenderer>().sprite = chunkCleanSprite;
+                    }
                 }
             }
         }
